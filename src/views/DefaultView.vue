@@ -16,7 +16,7 @@ const load = () => {
             </div>
         </div>
         <div id="content">
-            <ul v-infinite-scroll="load" class="infinite-list" style="overflow: auto">
+            <ul id="ct-items" v-infinite-scroll="load" class="infinite-list" style="overflow: auto">
                 <li v-for="i in count" :key="i" class="infinite-list-item">{{ i }}</li>
             </ul>
         </div>
@@ -33,6 +33,11 @@ const load = () => {
     width: 100%;
     height: 100%;
     position: relative;
+}
+#ct-items {
+    height: 100vh;
+    justify-content: center; /*  水平居中 */
+    align-items: center; /* 垂直居中 */
 }
 #fenqu {
     display: flex;

@@ -58,7 +58,7 @@ body {
     height: 100vh;
 }
 #bl {
-    height: 100%;
+    height: 100% - 10px;
     position: relative;
     top: 10px;
 }
