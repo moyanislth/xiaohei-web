@@ -72,10 +72,16 @@
         if (direction === "left") {
           offset.value = Math.min(offset.value + containerWidth, 0);
         } else if (direction === "right") {
-          offset.value = Math.max(
-            offset.value - containerWidth,
-            -(totalWidth - containerWidth)
-          );
+        //   const maxOffset = -(totalWidth - containerWidth);
+          const maxOffset = -(totalWidth);
+          const newOffset = offset.value - containerWidth;
+  
+          // 如果新的偏移量超过了最大偏移量，则调整到最大偏移量
+          if (newOffset < maxOffset) {
+            offset.value = maxOffset;
+          } else {
+            offset.value = newOffset;
+          }
         }
   
         // 更新按钮状态
