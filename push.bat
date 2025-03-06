@@ -1,4 +1,7 @@
 @echo off
+chcp 65001 > nul  
+REM 设置代码页为 UTF-8
+
 REM 脚本用于将当前目录的更改推送到 GitHub 仓库
 
 REM 设置仓库 URL 和分支
