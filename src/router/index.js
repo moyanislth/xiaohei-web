@@ -2,7 +2,7 @@ import {createRouter,createWebHistory} from 'vue-router'
 
 //导入组件
 import Home from '@/views/Home.vue'
-import DefaultView from '@/views/DefaultView.vue'
+import DefaultView from '@/views/main/DefaultView.vue'
 
 //定义路由关系
 const routes = [
