@@ -1,0 +1,114 @@
+/* 
+ * main.css
+ * 默认的全局样式文件
+ */
+
+/* 1. 重置浏览器默认样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* 防止边框和内边距影响宽度 */
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif; /* 设置默认字体 */
+    line-height: 1.6; /* 设置行高 */
+    color: #333; /* 设置默认文字颜色 */
+    background-color: #f9f9f9; /* 设置默认背景颜色 */
+}
+
+a {
+    text-decoration: none; /* 去掉链接下划线 */
+    color: #007BFF; /* 链接颜色 */
+}
+
+a:hover {
+    text-decoration: underline; /* 鼠标悬停时显示下划线 */
+}
+
+/* 2. 基础布局样式 */
+.container {
+    width: 90%; /* 设置容器宽度 */
+    max-width: 1200px; /* 最大宽度 */
+    margin: 0 auto; /* 水平居中 */
+    padding: 20px; /* 添加内边距 */
+}
+
+/* 3. 按钮样式 */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* 4. 标题和段落样式 */
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 10px;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+/* 5. 列表样式 */
+ul, ol {
+    margin-bottom: 15px;
+}
+
+ul {
+    list-style-type: disc; /* 无序列表样式 */
+}
+
+ol {
+    list-style-type: decimal; /* 有序列表样式 */
+}
+
+/* 6. 图片样式 */
+img {
+    max-width: 100%; /* 图片自适应 */
+    height: auto;
+    display: block;
+    margin: 0 auto; /* 图片水平居中 */
+}
+
+/* 7. 响应式布局 */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 5px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    h2 {
+        font-size: 16px;
+    }
+}
