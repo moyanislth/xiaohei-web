@@ -49,7 +49,7 @@ const load = () => {
 #fenqu-item {
     display: flex;
     width: 96%;
-    height: 80px;
+    height: 86px;
     background-color: rgb(255, 255, 255);
     border-radius: 5px;
 

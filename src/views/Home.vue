@@ -4,9 +4,44 @@ import { Search } from '@element-plus/icons-vue'
 import LeftBar from './aside/LeftBar.vue';
 import RightBar from './aside/RightBar.vue';
 import DefaultView from './main/DefaultView.vue';
-import { ref } from 'vue';
+import { ref,onMounted  } from 'vue';
 
-const activeIndex = ref('1')
+function print(string) {
+  console.log(string);
+}
+const handleInputClick = () => {
+    console.log('Search: ' + SearchInput.value);
+}
+
+// 标志变量，用于判断是否是第一次聚焦
+const isFirstFocus = ref(true);
+// 处理第一次聚焦事件
+const handleFirstFocus = () => {
+  if (isFirstFocus.value) {
+    SearchInput.value = ''; // 清空输入框内容
+    isFirstFocus.value = false; // 标记为已处理
+  }
+};
+const SearchInput = ref('热门搜索');
+
+// 防抖
+function debounce(func, wait) {
+  let timeout;
+  return function (...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      func.apply(this, args);
+    }, wait);
+  };
+}
+// 创建防抖后的函数
+let debouncedHandleInputClick;
+
+// 在 onMounted 中初始化防抖函数
+onMounted(() => {
+  debouncedHandleInputClick = debounce(handleInputClick, 300);
+});
+
 </script>
 
 <template>
@@ -21,14 +56,16 @@ const activeIndex = ref('1')
                     <el-input
                         v-model="SearchInput"
                         clearable style="width: 100%"
-                        placeholder="热门搜索"
-                        :prefix-icon="Search"
+                        placeholder=''
+                        suffix-icon="Search"
                         align-items="center"
-                    />  
+                        @keyup.enter="debouncedHandleInputClick()"
+                        @focus="handleFirstFocus()"
+                    />
+
                 </div>
                 <div class="topitem" id="user-info">
                     <el-menu
-                    :default-active="activeIndex"
                     class="el-menu"
                     mode="horizontal"
                     :ellipsis="false"
@@ -37,17 +74,19 @@ const activeIndex = ref('1')
                     <el-sub-menu index="1" popper-class="avatar-menu" popper-append-to-body >
                         <!-- 头像作为触发按钮 -->
                         <template #title>
-                        <el-avatar>user</el-avatar>
-                        <span>不喜欢起名</span>
+                            <el-avatar>user</el-avatar>
+                            <span>不喜欢起名</span>
                         </template>
                         <!-- 菜单项 -->
-                        <el-menu-item index="2-1">item one</el-menu-item>
-                        <el-menu-item index="2-2">item two</el-menu-item>
-                        <el-menu-item index="2-3">item three</el-menu-item>
+                        <el-menu-item index="2-1" @click="print('个人主页')">个人主页</el-menu-item>
+                        <el-menu-item index="2-2" @click="print('退出登录')">退出登录</el-menu-item>
                     </el-sub-menu>
                     </el-menu>
 
-                    <el-icon :size="26"><ChatDotSquare /></el-icon>
+                    <button @click="print('Email')">
+                        <el-icon :size="26"><ChatDotSquare /></el-icon>
+                    </button>
+                   
                 </div>
             </el-container> 
             
@@ -78,27 +117,6 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* 隐藏 el-menu 的边框 */
-.el-menu {
-  border-bottom: none;
-}
-
-/* 隐藏 el-sub-menu 的箭头 */
-.el-sub-menu ::v-deep(.el-sub-menu__title)::after {
-  display: none;
-}
-
-/* 自定义菜单样式 */
-.avatar-menu {
-  margin-top: 10px;
-  border: none; /* 移除菜单边框 */
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1); /* 添加阴影 */
-}
-
-/* 隐藏 el-menu-item 的边框 */
-.el-menu-item {
-  border-bottom: none;
-}
 #topct {
     height: 100vh;
 }
